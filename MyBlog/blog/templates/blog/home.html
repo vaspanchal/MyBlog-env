@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}My Blogs - VasCodes{% endblock %}
+
+{% block content %}
+
+    <header>
+        <!-- nav bar -->
+        <nav>
+            <div class="container">
+                <a class="brand" href="#home">LipArt</a>
+                <ul class="menu">
+                    <li> <a href="#">Home</a></li>
+                    <li> <a href="#products">Products</a></li>
+                    <li> <a href="#">Gallery</a></li>
+                    <li> <a href="#about">About</a> </li>
+                    <li> <a class="contact" href="#contact">Contact Us</a></li>
+                </ul>
+                <div class="hamburger-menu">&#9776;</div>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+    {% load markdown_extras %} <!--loading the markdown fomatting module-->
+
+    {% if recent_blogs_list %}
+    <ul>
+        {% for blog in recent_blogs_list %}
+        <div>
+            <a href="blog/{{blog.id }}">
+                <h2>{{blog.title|markdown}}</h2>
+            </a>    
+            {{ blog.content|markdown }}
+
+        </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No blogs are available.</p>
+{% endif %}
+
+{% endblock %}
